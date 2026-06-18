@@ -8,4 +8,8 @@
 <body>
     <h1>WebSocket server Demo</h1>
 </body>
+<script >
+    const{port}=window.location;
+    const connection=new WebSocket(`ws://localhost:${port}`);
+</script>
 </html>
