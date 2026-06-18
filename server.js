@@ -7,6 +7,12 @@ const port=process.env.PORT || 3000
 const httpServer = http.createServer(async(req, res) => {
     });
 const wsServer=new WebSocketServer({server:httpServer});
+wsServer.on('connection',(websocket)=>{
+    console.log(`websocket connecting`)
+    websocket.on('message',(data)=>{
+        console.log(`web socket message server `,data.toString())
+    })
+})
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
