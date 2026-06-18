@@ -13,9 +13,11 @@ const httpServer = http.createServer(async(req, res) => {
     });
 const wsServer=new WebSocketServer({server:httpServer});
 wsServer.on('connection',(websocket)=>{
-    console.log(`websocket connection`)
+    console.log(`websocket connection...`)
     websocket.on('message',(data)=>{
         console.log(`web socket message server `,data.toString())
+        websocket.send(`pong Hello from Server`)
+    
     })
 })
 
