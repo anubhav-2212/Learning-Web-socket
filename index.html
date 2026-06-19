@@ -23,12 +23,12 @@
             messageInput.value='';
         })
         connection.onmessage=(data)=>{
+           const messagecontainer=document.getElementById('message-container');
+           const li=document.createElement('li');
+           li.textContent=data.data;
+           messagecontainer.appendChild(li);
            console.log(data)
         }
-        // connection.send(`Ping Hello From Browser.....`)
     }
-    // connection.onmessage=(data)=>{
-    //     console.log(`web socket message client `,data.data)
-    // }
 </script>
 </html>
