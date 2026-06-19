@@ -13,7 +13,7 @@ const httpServer = http.createServer(async(req, res) => {
     res.setHeader('Content-Type', 'text/html');
     return res.end(indexFile);
     });
-redisSubscribe.ssubscribe(REDIS_CHANNEL);
+redisSubscribe.subscribe(REDIS_CHANNEL);
 redisSubscribe.on('message',async(channel,data)=>{
     console.log(`redis message ${data}`)
     wsServer.clients.forEach((client)=>{
@@ -27,7 +27,7 @@ wsServer.on('connection',(websocket)=>{
     websocket.on('message',async(data)=>{
         console.log(`web socket message server `,data.toString())
     //Relay the message to broker i.e redis
-    await redisPublish.publish('REDIS_CHANNEL',data.toString());
+    await redisPublish.publish(REDIS_CHANNEL,data.toString());
 
     })
     //broadcast the message to all the clients
